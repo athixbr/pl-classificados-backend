@@ -1,13 +1,19 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { sequelize, testConnection } from './config/database.js';
 import { configureMercadoPago } from './config/mercadopago.js';
 import routes from './routes/index.js';
 import { errorHandler, notFound } from './middlewares/errorHandler.js';
 
-// Carregar variáveis de ambiente
-dotenv.config();
+// Obter __dirname em ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Carregar variáveis de ambiente da raiz do projeto
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 // Inicializar app
 const app = express();

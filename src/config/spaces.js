@@ -1,7 +1,4 @@
 import AWS from 'aws-sdk';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const spacesEndpoint = new AWS.Endpoint(process.env.DO_SPACES_ENDPOINT);
 
